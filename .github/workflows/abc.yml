@@ -21,7 +21,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Print environment
-        environment: ${{ inputs.environment }}
+        environment:
+          name: ${{ inputs.environment }}
+          url: ${{ inputs.application }}
         run: |
           echo ${{ inputs.environment }}
           echo ${{ inputs.application }}
