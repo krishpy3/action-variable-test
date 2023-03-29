@@ -17,13 +17,13 @@ on:
 jobs:
   first:
     runs-on: ubuntu-latest
+    environment:
+      name: ${{ inputs.environment }}
+      url: ${{ inputs.application }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Print environment
-        environment:
-          name: ${{ inputs.environment }}
-          url: ${{ inputs.application }}
         run: |
           echo ${{ inputs.environment }}
           echo ${{ inputs.application }}
