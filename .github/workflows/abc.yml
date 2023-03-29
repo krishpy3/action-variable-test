@@ -17,9 +17,7 @@ on:
 jobs:
   first:
     runs-on: ubuntu-latest
-    environment:
-      name: ${{ inputs.environment }}
-      url: ${{ inputs.application }}
+    environment: ${{ inputs.environment }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -29,3 +27,5 @@ jobs:
           echo ${{ inputs.application }}
           #echo all env variables
           env
+          # Echo variables value from env variable WSL_DISTRO_NAME
+          echo $WSL_DISTRO_NAME
