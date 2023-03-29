@@ -1,0 +1,28 @@
+name: Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Environment to run action in"
+        required: true
+        type: string
+        default: "DEV"
+      application:
+        description: "Name of application"
+        required: true
+        type: string
+        default: "Krish"
+
+jobs:
+  first:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Print environment
+        environment: ${{ inputs.environment }}
+        run: |
+          echo ${{ inputs.environment }}
+          echo ${{ inputs.application }}
+          echo ${{ inputs.logLevel }}
