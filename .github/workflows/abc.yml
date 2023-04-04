@@ -19,13 +19,12 @@ env:
 jobs:
   first:
     runs-on: ubuntu-latest
-    environment: ${{ github.event.inputs.environment }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Print environment
         run: |
-          echo ${{ envi }}
+          echo $envi
           echo ${{ inputs.application }}
           #echo all env variables
           env
