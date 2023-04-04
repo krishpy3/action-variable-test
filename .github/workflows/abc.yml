@@ -24,9 +24,5 @@ jobs:
         uses: actions/checkout@v2
       - name: Print environment
         run: |
-          echo $envi
+          echo "$envi"
           echo ${{ inputs.application }}
-          #echo all env variables
-          env
-          # Echo variables value from env variable WSL_DISTRO_NAME
-          echo $WSL_DISTRO_NAME
