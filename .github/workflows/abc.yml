@@ -14,7 +14,7 @@ on:
         type: string
         default: "Krish"
 env:
-  envi: "${{ inputs.environment }}_${{ inputs.environment }}"
+  envi: "${{ github.event.inputs.environment }}_${{ github.event.inputs.environment }}"
   
 jobs:
   first:
