@@ -33,6 +33,6 @@ jobs:
             const pullRequests = await github.rest.repos.createOrUpdateEnvironment({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              environment_name: $envi
+              environment_name: ${{ envi }}
             })
       
