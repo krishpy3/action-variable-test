@@ -34,8 +34,8 @@ jobs:
         shell: python
         run: |
           import requests
-        
-
+          import os
+          print(os.environ)
           headers = {
               'Accept': 'application/vnd.github+json',
               'Authorization': 'Bearer ${{ secrets.PAT }}',
@@ -43,7 +43,7 @@ jobs:
           }
           repo = "django-demo"
           owner = "krishpy3"
-          response = requests.put('https://api.github.com/repos/${{ context.repo.owner }}/${{ context.repo.repo }}/environments/${{ envi }}', headers=headers)
+          response = requests.put(f'https://api.github.com/repos/{os.environ["GITHUB_REPOSITORY_OWNER"]}/{os.environ["GITHUB_REPOSITORY"]}/environments/krish', headers=headers)
           print(response.json())
           
 #       - name: Create environment
