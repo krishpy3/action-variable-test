@@ -38,7 +38,7 @@ jobs:
 
           headers = {
               'Accept': 'application/vnd.github+json',
-              'Authorization': '${{ secrets.PAT }}',
+              'Authorization': 'Bearer ${{ secrets.PAT }}',
               'X-GitHub-Api-Version': '2022-11-28'
           }
           repo = "django-demo"
