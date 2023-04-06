@@ -19,23 +19,27 @@ env:
 jobs:
   first:
     runs-on: ubuntu-latest
-    permissions: write-all
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Print environment
         run: |
-          echo "$envi"
-          echo ${{ inputs.application }}
-      - name: create env
+          echo $envi
+          echo ${{ github.event.inputs.application }}
+      - name: Create environment
         uses: actions/github-script@v6
         with:
           script: |
-            const pullRequests = await github.rest.repos.createOrUpdateEnvironment({
+            const result = await github.rest.repos.createOrUpdateEnvironment({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              environment_name: "${{ github.event.inputs.application }}",
-              deployment_branch_policy.protected_branches: true,
-              deployment_branch_policy.custom_branch_policies: false
+              environment_name: "${{ github.event.inputs.environment }}",
+              deployment_branch_policy: {
+                protected_branches: true,
+                custom_branch_policies: false
+              }
             })
-      
+            console.log(result.data)
