@@ -30,17 +30,33 @@ jobs:
         run: |
           echo $envi
           echo ${{ github.event.inputs.application }}
-      - name: Create environment
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const result = await github.rest.repos.createOrUpdateEnvironment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              environment_name: "${{ github.event.inputs.environment }}",
-              deployment_branch_policy: {
-                protected_branches: true,
-                custom_branch_policies: false
-              }
-            })
-            console.log(result.data)
+      - name: test
+        shell: python
+        run: |
+          import requests
+          personal_access_token = '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'
+
+          headers = {
+              'Accept': 'application/vnd.github+json',
+              'Authorization': f'Bearer {personal_access_token}',
+              'X-GitHub-Api-Version': '2022-11-28'
+          }
+          repo = "django-demo"
+          owner = "krishpy3"
+          response = requests.put(f'https://api.github.com/repos/{owner}/{repo}/environments/dev3', headers=headers)
+          print(response.json())
+          
+#       - name: Create environment
+#         uses: actions/github-script@v6
+#         with:
+#           script: |
+#             const result = await github.rest.repos.createOrUpdateEnvironment({
+#               owner: context.repo.owner,
+#               repo: context.repo.repo,
+#               environment_name: "${{ github.event.inputs.environment }}",
+#               deployment_branch_policy: {
+#                 protected_branches: true,
+#                 custom_branch_policies: false
+#               }
+#             })
+#             console.log(result.data)
