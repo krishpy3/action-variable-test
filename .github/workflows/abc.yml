@@ -34,6 +34,8 @@ jobs:
             const pullRequests = await github.rest.repos.createOrUpdateEnvironment({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              environment_name: "${{ github.event.inputs.application }}"
+              environment_name: "${{ github.event.inputs.application }}",
+              deployment_branch_policy.protected_branches: true,
+              deployment_branch_policy.custom_branch_policies: false
             })
       
