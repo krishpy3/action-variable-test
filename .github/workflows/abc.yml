@@ -30,7 +30,7 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            octokit.rest.repos.createOrUpdateEnvironment({
+            const pullRequests = await github.rest.repos.createOrUpdateEnvironment({
               owner: context.repo.owner,
               repo: context.repo.repo,
               environment_name: $envi
