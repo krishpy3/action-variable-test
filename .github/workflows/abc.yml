@@ -19,16 +19,18 @@ env:
   
 jobs:
   env-setup:
-    name: Create Environement if not available
+    name: Create Environment if not available
     runs-on: ubuntu-latest
     permissions:
       deployments: write
-    environment: "${{ env.envi }}"
+    env:
+      envi: "${{ github.event.inputs.application }}_${{ github.event.inputs.environment }}"
     steps:
       - name: Create environment
         run: |
           echo $envi
           echo ${{ env.envi }}
+    environment: "${{ env.envi }}"
 #       - name: test
 #         shell: python
 #         run: |
