@@ -13,7 +13,6 @@ on:
         required: true
         type: string
         default: "Krish"
-  push:
 
 env:
   Envi: "${{ github.event.inputs.application }}_${{ github.event.inputs.environment }}"
@@ -24,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       deployments: write
-    environment: $Envi
+    environment: "$Envi"
     steps:
       - name: Create environment
         run: |
