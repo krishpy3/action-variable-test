@@ -24,12 +24,14 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       deployments: write
-    environment: "${{ env.Envi }}"
+    environment: $Envi
     steps:
       - name: Create environment
         run: |
           echo $Envi
+          echo env
           echo ${{ env.Envi }}
+          echo env
     
 #       - name: test
 #         shell: python
