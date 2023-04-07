@@ -14,8 +14,9 @@ on:
         type: string
         default: "Krish"
   push:
+
 env:
-  envi: "${{ github.event.inputs.application }}_${{ github.event.inputs.environment }}"
+  Envi: "${{ github.event.inputs.application }}_${{ github.event.inputs.environment }}"
   
 jobs:
   env-setup:
@@ -23,22 +24,13 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       deployments: write
+    environment: "${{ env.Envi }}"
     steps:
       - name: Create environment
         run: |
-          echo $envi
-          echo ${{ env.envi }}
-    environment: "${{ env.envi }}"
-
-  job2:
-    name: Job 2
-    runs-on: ubuntu-latest
-    steps:
-      - name: Print environment
-        run: |
-          echo $envi
-          echo ${{ env.envi }}
-    environment: "${{ env.envi }}"
+          echo $Envi
+          echo ${{ env.Envi }}
+    
 #       - name: test
 #         shell: python
 #         run: |
