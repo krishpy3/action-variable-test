@@ -13,7 +13,6 @@ on:
         required: true
         type: string
         default: "Krish"
-  push:
 
 env:
   envi: "${{ github.event.inputs.application }}_${{ github.event.inputs.environment }}"
