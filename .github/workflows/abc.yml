@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       deployments: write
-    environment: 'hello'
+    environment: "$envi"
     steps:
       - name: Create environment
         run: |
