@@ -13,6 +13,7 @@ on:
         required: true
         type: string
         default: "Krish"
+  push:
 env:
   envi: "${{ github.event.inputs.application }}_${{ github.event.inputs.environment }}"
   
@@ -22,26 +23,27 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       deployments: write
+    environment: 'hello'
     steps:
       - name: Create environment
         run: |
           echo $envi
           echo ${{ github.event.inputs.application }}
-      - name: test
-        shell: python
-        run: |
-          import requests
-          import os
-          print(os.environ)
-          headers = {
-              'Accept': 'application/vnd.github+json',
-              'Authorization': 'Bearer ${{ secrets.PAT }}',
-              'X-GitHub-Api-Version': '2022-11-28'
-          }
-          repo = "django-demo"
-          owner = "krishpy3"
-          response = requests.put(f'https://api.github.com/repos/{os.environ["GITHUB_REPOSITORY"]}/environments/{os.environ["envi"]}', headers=headers)
-          print(response.json())
+#       - name: test
+#         shell: python
+#         run: |
+#           import requests
+#           import os
+#           print(os.environ)
+#           headers = {
+#               'Accept': 'application/vnd.github+json',
+#               'Authorization': 'Bearer ${{ secrets.PAT }}',
+#               'X-GitHub-Api-Version': '2022-11-28'
+#           }
+#           repo = "django-demo"
+#           owner = "krishpy3"
+#           response = requests.put(f'https://api.github.com/repos/{os.environ["GITHUB_REPOSITORY"]}/environments/{os.environ["envi"]}', headers=headers)
+#           print(response.json())
           
 #       - name: Create environment
 #         uses: actions/github-script@v6
