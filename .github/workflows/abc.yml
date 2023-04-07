@@ -17,7 +17,7 @@ env:
   envi: "${{ github.event.inputs.application }}_${{ github.event.inputs.environment }}"
   
 jobs:
-  first:
+  env-setup:
     name: Create Environement if not available
     runs-on: ubuntu-latest
     permissions:
