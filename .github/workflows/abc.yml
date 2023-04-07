@@ -15,23 +15,37 @@ on:
         default: "Krish"
 
 env:
-  Envi: "${{ github.event.inputs.application }}_${{ github.event.inputs.environment }}"
-  
+  envi: "${{ github.event.inputs.application }}_${{ github.event.inputs.environment }}"
+
 jobs:
   env-setup:
     name: Create Environment if not available
     runs-on: ubuntu-latest
     permissions:
       deployments: write
-    environment: "${{ env.Envi }}"
     steps:
       - name: Create environment
         run: |
-          echo ${{ env.Envi }}
-          env
-          echo ${{ env.Envi }}
-          echo $Envi
-    
+          echo $envi
+          echo ${{ env.envi }}
+      - name: Set environment
+        run: |
+          echo "envi=${envi}" >> $GITHUB_ENV
+    env:
+      envi: "${{ env.envi }}"
+    outputs:
+      env: ${{ env.envi }}
+
+  job2:
+    name: Job 2
+    runs-on: ubuntu-latest
+    needs: env-setup
+    environment: ${{ needs.env-setup.outputs.env }}
+    steps:
+      - name: Print environment
+        run: |
+          echo $envi
+          echo ${{ env.envi }}
 #       - name: test
 #         shell: python
 #         run: |
