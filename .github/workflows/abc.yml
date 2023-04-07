@@ -18,15 +18,12 @@ env:
   
 jobs:
   first:
+    name: Create Environement if not available
     runs-on: ubuntu-latest
     permissions:
-      contents: write
-      pull-requests: write
       deployments: write
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Print environment
+      - name: Create environment
         run: |
           echo $envi
           echo ${{ github.event.inputs.application }}
