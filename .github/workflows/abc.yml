@@ -23,12 +23,12 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       deployments: write
-    environment: "${envi}"
+    environment: "${{ envi }}"
     steps:
       - name: Create environment
         run: |
           echo $envi
-          echo ${{ github.event.inputs.application }}
+          echo ${{ github.env }}
 #       - name: test
 #         shell: python
 #         run: |
