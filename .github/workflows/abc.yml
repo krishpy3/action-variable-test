@@ -28,8 +28,8 @@ jobs:
     steps:
       - name: Create environment
         run: |
-          echo $Envi
-          echo env
+          echo ${{ github.env.Envi }}
+          env
           echo ${{ env.Envi }}
           echo env
     
