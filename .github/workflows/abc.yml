@@ -23,11 +23,11 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       deployments: write
-    environment: "$Envi"
+    environment: "${{ env.Envi }}"
     steps:
       - name: Create environment
         run: |
-          echo ${{ github.env.Envi }}
+          echo ${{ env.Envi }}
           env
           echo ${{ env.Envi }}
           echo $Envi
