@@ -13,6 +13,7 @@ on:
         required: true
         type: string
         default: "Krish"
+  push:
 
 env:
   envi: "${{ github.event.inputs.application }}_${{ github.event.inputs.environment }}"
@@ -31,8 +32,6 @@ jobs:
       - name: Set environment
         run: |
           echo "envi=${envi}" >> $GITHUB_ENV
-    env:
-      envi: "${{ env.envi }}"
     outputs:
       env: ${{ env.envi }}
 
@@ -44,8 +43,8 @@ jobs:
     steps:
       - name: Print environment
         run: |
-          echo $envi
-          echo ${{ env.envi }}
+          echo ${{ needs.env-setup.outputs.env }}
+
 #       - name: test
 #         shell: python
 #         run: |
